@@ -335,11 +335,11 @@ define( 'NONCE_SALT', 'put your unique phrase here' );
  
     ls -la /etc/apache2/sites-available/
     
-![config](https://cdn.freehost.com.ua/wpdeb14.jpg "")
+![config](https://cdn.freehost.com.ua/wpdeb14.jpg "Config")
  
 Далі в панелі управління https://test.com/wp-admin, в лівому меню перейти в розділ `«Налаштування»`, в рядках `Адреса WordPress (URL)` і `Адреса сайту (URL)` змінити `http` на `https`. Натиснути `«Зберегти зміни»` знизу сторінки. 
 
-![configwp](https://cdn.freehost.com.ua/wpdeb16.jpg "")
+![configwp](https://cdn.freehost.com.ua/wpdeb16.jpg "Comfig WP")
 
 Відключаємо `HTTP`. Для цього файл `.htaccess` має виглядати так
 ```
