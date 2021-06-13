@@ -219,8 +219,77 @@ ___
 
 ## Встановлення та налаштування Wordpress
 
+Перейти в каталог `/tmp`, скачати в нього свіжу версію `Wordpress` й розархівувати
 
+        cd /tmp
+        curl -O https://wordpress.org/latest.tar.gz
+        tar xzvf latest.tar.gz
+        
+Скопіювати вміст в кореневу директорію сайту        
 
+    sudo cp -a /tmp/wordpress/. /var/www/test.com/
     
+Подальші налаштування будуть відносно кореневого каталогу сайта `/var/www/test.com/`
+
+    cd /var/www/test.com
+
+Створити порожній файл `.htaccess`
+
+    sudo touch .htaccess
+    
+Створити каталог `upgrade`
+
+    sudo mkdir /var/www/test.com/wp-content/upgrade
+
+Зкопіювати файл `wp-config-sample.php` в файл `wp-config.php`
+
+    sudo cp /var/www/test.com/wp-config-sample.php /var/www/test.com/wp-config.php
+    
+Встановити правильні права доступу на каталоги. Користувач і групи повинні бути `www-data`
+
+    sudo chown -R www-data:www-data /var/www/test.com/
+    
+За правилами безпеки, права на каталоги повинні бути `755`, а на файли `644`
+
+    sudo find /var/www/test.com/ -type d -exec chmod 755 {} \;
+    sudo find /var/www/test.com/ -type f -exec chmod 644 {} \;
+    
+Перевірити
+
+    ls -la
+    
+Згенерувати ключі безпеки для шифрування інформації яка зберігається в `Cookies`
+
+    curl -s https://api.wordpress.org/secret-key/1.1/salt/
+    
+Зберегти автоматично згенерували ключі.  
+Вини будуть мати схожий вигляд. 
+![gen-key](https://cdn.freehost.com.ua/wpdeb07.jpg "Вигляд згенерованих ключів")
+
+Відкрити `wp-config.php`
+
+    sudo nano /var/www/test.com/wp-config.php
+    
+Знайти наступні рядки
+
+```php
+define( 'AUTH_KEY', 'put your unique phrase here' );
+define( 'SECURE_AUTH_KEY', 'put your unique phrase here' );
+define( 'LOGGED_IN_KEY', 'put your unique phrase here' );
+define( 'NONCE_KEY', 'put your unique phrase here' );
+define( 'AUTH_SALT', 'put your unique phrase here' );
+define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
+define( 'LOGGED_IN_SALT', 'put your unique phrase here' );
+define( 'NONCE_SALT', 'put your unique phrase here' );
+```
+Видалити ці рядки, і на їх місце вставити ті рядки що були раніше згенеровані
+
+В файлі `wp-config.php` налаштувати підключення до бази даних, використовуючи дані користувача, якого створили раніше.  
+![databaseconnect](https://cdn.freehost.com.ua/wpdeb08.jpg "Вигляд налаштованого підключення до бази")
+    
+Зберегти `wp-config.php`. Тепер можна почати встановлення Wordpress через інтерфейс в браузері.  
+Виберіти мову і натиснути «Продовжити».  
+Далі заповнити всі поля та підтвердити натисканням `Встановити Wordpress`
+
 
         
