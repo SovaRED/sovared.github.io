@@ -19,7 +19,7 @@
  
     select-editor
     
-Включити підсвічування синтаксису всіх файлів, які не позначені явно в файлі `/usr/share/mc/syntax/Syntax` синтаксисом для `sh` і `bash` скриптів. Цей універсальний синтаксис нормально підходить для конфігураційних файлів, з якими найчастіше доводиться працювати на сервері. Перезаписуємо файл `unknown.syntax`. Саме цей шаблон буде застосовуватися до `.conf` і `.cf` файлів, так як до них явно не прив'язане ніякого синтаксису.
+Включити підсвічування синтаксису всіх файлів, які не позначені явно в файлі `/usr/share/mc/syntax/Syntax` синтаксисом для `sh` і `bash` скриптів. Цей універсальний синтаксис нормально підходить для конфігураційних файлів, з якими найчастіше доводиться працювати на сервері. Перезаписати файл `unknown.syntax`. Саме цей шаблон буде застосовуватися до `.conf` і `.cf` файлів, так як до них явно не прив'язане ніякого синтаксису.
 
     cp /usr/share/mc/syntax/sh.syntax /usr/share/mc/syntax/unknown.syntax
 
@@ -28,7 +28,7 @@
     usermod -aG sudo username
 
 ## Налаштування брандмауера
-Встановити UFW, це зручний інтерфейс `iptables`.
+Встановити UFW - це зручний інтерфейс `iptables`.
         
     apt install ufw
         
@@ -49,7 +49,7 @@
 
     ufw enable
         
-Переконатися, що з'єднання `SSH` не блокують брандмауером:        
+Переконатися, що з'єднання `SSH` не блокується брандмауером:        
 
     ufw status
         
@@ -61,7 +61,7 @@
     sudo apt install -y apache2 apache2-utils libapache2-mod-php
 
 Після встановлення сервіс автоматично запуститься.  
-Додати Apach в автозавантаження системи.
+Додати Apache в автозавантаження системи.
         
     sudo systemctl enable apache2
 
@@ -71,11 +71,11 @@
     hostname -I
     curl http://ifconfig.co
 
-Перевірити чи працює. В адресному рядку браузера ввести ip адресу сервера:
+Перевірити чи працює Apache. В адресному рядку браузера ввести ip адресу сервера:
 
     links http://server_ip        
 
-Має відкритись сторінка встановленого Apach
+Має відкритись сторінка встановленого Apache
 
 
 ## Встановлення MariaDB
@@ -90,7 +90,7 @@
 
     sudo mysql_secure_installation
     
-Ввесити пароль `root` потім `N` а на інші питання `Y`
+Ввесити пароль для `root` потім `N` а на інші питання `Y`
 
 ## Встановлення PHP
 
@@ -130,6 +130,7 @@
     EXIT;
     
 ## Налаштування віртуального хоста Apache
+
 Тестовий домен `test.com`  
 Видалити каталог `/var/www/html`
 
@@ -185,7 +186,7 @@
 
     sudo a2enmod rewrite
     
-Підключити `php` як модулю `Apach`
+Підключити `php` як модулю `Apache`
 
     sudo a2enmod php7.3
     
@@ -198,6 +199,7 @@
     systemctl restart apache2.service
     
 ### Тест PHP
+
 В кореневій директорії для домену `test.com`, створити файл `info.php` 
 
      sudo nano /var/www/test.com/info.php
@@ -213,9 +215,10 @@
     links test.com/info.php
     
 Має відкритись сторінка де буде вся інформація про встановлений PHP
-___
+***
 **Після тестування обов'язково видалити файл info.php, він не повинен бути у відкритому доступі!**
-___
+***
+
 
 ## Встановлення та налаштування Wordpress
 
@@ -241,7 +244,7 @@ ___
 
     sudo mkdir /var/www/test.com/wp-content/upgrade
 
-Зкопіювати файл `wp-config-sample.php` в файл `wp-config.php`
+Скопіювати файл `wp-config-sample.php` в файл `wp-config.php`
 
     sudo cp /var/www/test.com/wp-config-sample.php /var/www/test.com/wp-config.php
     
@@ -263,7 +266,8 @@ ___
     curl -s https://api.wordpress.org/secret-key/1.1/salt/
     
 Зберегти автоматично згенерували ключі.  
-Вини будуть мати схожий вигляд. 
+Вони мають мати схожий вигляд. 
+
 ![gen-key](https://cdn.freehost.com.ua/wpdeb07.jpg "Вигляд згенерованих ключів")
 
 Відкрити `wp-config.php`
@@ -282,14 +286,80 @@ define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
 define( 'LOGGED_IN_SALT', 'put your unique phrase here' );
 define( 'NONCE_SALT', 'put your unique phrase here' );
 ```
-Видалити ці рядки, і на їх місце вставити ті рядки що були раніше згенеровані
+Видалити ці рядки, і на їх місце вставити ті рядки що були згенеровані раніше  
 
-В файлі `wp-config.php` налаштувати підключення до бази даних, використовуючи дані користувача, якого створили раніше.  
+Також в файлі `wp-config.php` налаштувати підключення до бази даних, використовуючи дані користувача, якого створили раніше.  
+
 ![databaseconnect](https://cdn.freehost.com.ua/wpdeb08.jpg "Вигляд налаштованого підключення до бази")
     
-Зберегти `wp-config.php`. Тепер можна почати встановлення Wordpress через інтерфейс в браузері.  
-Виберіти мову і натиснути «Продовжити».  
+Зберегти `wp-config.php`.  
+
+Тепер можна почати встановлення `Wordpress` через інтерфейс в браузері.  
+Вибрати мову і натиснути «Продовжити».  
 Далі заповнити всі поля та підтвердити натисканням `Встановити Wordpress`
 
+## Налаштування SSL для домену на Wordpress
+
+Отримувати безкоштовний `Let's Encrypt` сертифікат за допомогою утиліти `Certbot`  
+Встановити `snapd` та оновити 
+
+    sudo apt install snapd
+    sudo snap install core
+    sudo snap refresh core
+
+Вилучити `certbot-auto` та всі пакунки `Certbot`
+
+    sudo apt-get remove certbot
+
+Встановити `Certbot`
+
+    sudo snap install --classic certbot
+    
+Переконатися, що команда `certbot` може бути запущена
+
+    sudo ln -s /snap/bin/certbot /usr/bin/certbot
+    
+Отримати сертифікат, і `certbot` автоматично відредагує конфігурацію `Apache` ввімкнувши доступ `https`
+    
+    sudo certbot --apache
+    
+ Перевірити автоматичне поновлення сертифікатів можна так
+ 
+    sudo certbot renew --dry-run
+    
+ `certbot` автоматично пропише себе в `cron` та буде автоматично оновлювати сертифікат якщо не буде змінено конфігурацію.
+ 
+ `Certbot` автоматично все згенерував і розклав по каталогам.  
+ Сертифікат (certificate) і ланцюжок (chain) зберіг в: `/etc/letsencrypt/live/test.com/fullchain.pem`  
+ Приватний ключ згенеровано тут: `/etc/letsencrypt/live/test.com/privkey.pem`  
+ Зручність полягає також у тому, що `Certbot` просканував всі наші каталоги і віртуалхости, автоматично створивши новий конфіг `test.com-le-ssl.conf`
+ 
+    ls -la /etc/apache2/sites-available/
+    
+![config](https://cdn.freehost.com.ua/wpdeb14.jpg "")
+ 
+Далі в панелі управління https://test.com/wp-admin, в лівому меню перейти в розділ `«Налаштування»`, в рядках `Адреса WordPress (URL)` і `Адреса сайту (URL)` змінити `http` на `https`. Натиснути `«Зберегти зміни»` внизу сторінки. 
+
+Відключаємо `HTTP`. Для цього файл `.htaccess` має виглядати так
+```
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} =off
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]
+</IfModule>
+```    
+Якщо після цього виникне помилка циклічної переадресації, необхідно в файлі `wp-config.php`, після `<?Php` додати з нового рядка наступне 
+```php
+if ($_SERVER["HTTP_X_FORWARDED_PROTOCOL"] == 'https'){
+    $_SERVER["HTTPS"]='on';
+}
+if ($_SERVER["HTTP_X_FORWARDED_PROTOCOL"] == 'http'){
+    $_SERVER["HTTPS"]='on';
+    header("Location: https://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
+    exit();
+}
+```
+
+[УСТАНОВКА WORDPRESS НА DEBIAN 10. ИНСТРУКЦИЯ](https://freehost.com.ua/faq/articles/ustanovka-wordpress-na-debian-10-instruktsija/)
 
         
