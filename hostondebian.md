@@ -338,7 +338,9 @@ define( 'NONCE_SALT', 'put your unique phrase here' );
     
 ![config](https://cdn.freehost.com.ua/wpdeb14.jpg "")
  
-Далі в панелі управління https://test.com/wp-admin, в лівому меню перейти в розділ `«Налаштування»`, в рядках `Адреса WordPress (URL)` і `Адреса сайту (URL)` змінити `http` на `https`. Натиснути `«Зберегти зміни»` внизу сторінки. 
+Далі в панелі управління https://test.com/wp-admin, в лівому меню перейти в розділ `«Налаштування»`, в рядках `Адреса WordPress (URL)` і `Адреса сайту (URL)` змінити `http` на `https`. Натиснути `«Зберегти зміни»` знизу сторінки. 
+
+![configwp](https://cdn.freehost.com.ua/wpdeb16.jpg "")
 
 Відключаємо `HTTP`. Для цього файл `.htaccess` має виглядати так
 ```
