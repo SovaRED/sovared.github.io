@@ -7,7 +7,7 @@
     apt full-upgrade
     apt autoremove
 
-Тепер треба встановити Grub на другий диск
+Тепер треба встановити Grub на другий диск RAID1 масиву
 
     dpkg-reconfigure grub-pc
   
