@@ -4,7 +4,7 @@
 
     apt update
     apt upgrade
-    apr full-upgrade
+    apt full-upgrade
     apt autoremove
 
 Тепер треба встановити Grub на другий диск
@@ -90,7 +90,7 @@
 
     sudo mysql_secure_installation
     
-Ввесити пароль для `root` потім `N` а на інші питання `Y`
+Ввесити пароль для `root`, потім `N`, на інші питання `Y`
 
 ## Встановлення PHP
 
