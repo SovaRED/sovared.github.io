@@ -12,7 +12,7 @@
     gzip --decompress /var/lib/vz/images/${id}/tinycore-redpill.img.gz --keep
 
     # create disk for sata0
-    pvesm alloc raid ${id} vm-${id}-disk-0.raw 30G
+    pvesm alloc local ${id} vm-${id}-disk-0.raw 30G
 
     # create vm
     qm create ${id} \
@@ -27,7 +27,7 @@
       --onboot 0 \
       --ostype l26 \
       --scsihw virtio-scsi-pci \
-      --virtio0 raid:${id}/vm-${id}-disk-0.raw,discard=on,size=30G \
+      --sata0 local:${id}/vm-${id}-disk-0.raw,discard=on,size=30G,ssd=1 \
       --sockets 1 \
       --serial0 socket \
       --serial1 socket \
