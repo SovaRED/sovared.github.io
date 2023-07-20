@@ -46,12 +46,15 @@
 
 
 драйвер VirtIO
+
     ./rploader.sh ext ds3622xsp-7.1.1-42962 add https://raw.githubusercontent.com/pocopico/rp-ext/master/v9fs/rpext-index.json
 
 драйвер Intel E1000
+
     ./rploader.sh ext ds3622xsp-7.1.1-42962 add https://raw.githubusercontent.com/pocopico/rp-ext/master/e1000/rpext-index.json
 
 драйвер Realtek RTL8139
+
     ./rploader.sh ext ds3622xsp-7.1.1-42962 add https://raw.githubusercontent.com/pocopico/rp-ext/master/8139too/rpext-index.json
 
 
