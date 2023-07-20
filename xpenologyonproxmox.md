@@ -62,3 +62,5 @@
     ./rploader.sh build broadwellnk-7.1.1-42962
 
     ./rploader.sh build ds3622xsp-7.1.1-42962 withfriend
+
+https://xpenology.com/forum/topic/65363-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-dsm-711-%D0%BD%D0%B0-proxmox/
